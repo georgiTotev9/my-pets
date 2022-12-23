@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 const Header = () => {
     return (
         <header id='site-header'>
             <nav className='navbar'>
                 <section className='navbar-dashboard'>
-                    {/* <Link to="/dashboard">Dashboard</Link>
+                    <Link to="/dashboard">Dashboard</Link>
                     <div id='guest'>
                         <Link className='button' to='/login'>
                             Login
@@ -23,7 +25,7 @@ const Header = () => {
                         <Link className='button' to='/logout'>
                             Logout
                         </Link>
-                    </div> */}
+                    </div>
                 </section>
             </nav>
         </header>
