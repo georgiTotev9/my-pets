@@ -14,7 +14,7 @@ const Header = ({isAuthenticated, user}) => {
 
     const userNav = (
         <div id='user'>
-            <span>Welcome, email</span>
+            <span>Welcome, {user}</span>
             <Link className='button' to='/my-pets'>
                 My Pets
             </Link>
