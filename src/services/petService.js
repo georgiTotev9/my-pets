@@ -7,3 +7,15 @@ export const getAll = async () => {
 
     return Object.values(pets);
 };
+
+export const create = async (petData) => {
+    let res = await fetch(baseUrl, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(petData),
+    });
+
+    let result = await res.json();
+
+    return result;
+};
