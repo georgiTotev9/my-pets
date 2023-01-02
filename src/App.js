@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Create from './components/Create';
 import Dashboard from './components/Dashboard';
+import Details from './components/Details';
 
 function App() {
     const [userInfo, setUserInfo] = useState({
@@ -41,6 +42,7 @@ function App() {
                     <Route path='/register' element={<Register />} />
                     <Route path='/create' element={<Create />} />
                     <Route path='/my-pets' element={<MyPets />} />
+                    <Route path='/details/:petId' element={<Details />} />
                 </Routes>
             </main>
         </div>

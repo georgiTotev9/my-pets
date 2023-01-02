@@ -19,3 +19,12 @@ export const create = async (petData) => {
 
     return result;
 };
+
+
+export const getOne = async (id) => {
+    const res = await fetch(`${baseUrl}/${id}`);
+
+    const pet = await res.json();
+
+    return pet;
+};
