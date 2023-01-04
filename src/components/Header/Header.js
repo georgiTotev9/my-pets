@@ -31,7 +31,7 @@ const Header = ({isAuthenticated, user}) => {
         <header id='site-header'>
             <nav className='navbar'>
                 <section className='navbar-dashboard'>
-                    <Link to='/dashboard'>Dashboard</Link>
+                    <Link to='/'>Dashboard</Link>
                     {isAuthenticated ? userNav : guestNav}
                 </section>
             </nav>
