@@ -10,13 +10,17 @@ const Login = ({ onLogin }) => {
         let formData = new FormData(e.currentTarget);
         let { email, password } = Object.fromEntries(formData);
 
-        authService.login(email, password).then((userData) => {
-            console.log('logged!');
-            console.log(userData);
-        });
+        authService
+            .login(email, password)
+            .then((userData) => {
+                onLogin(userData);
 
-        onLogin(email);
-        navigate('/');
+                navigate('/');
+            })
+            .catch((error) => {
+                //TODO: show notification
+                console.log(error);
+            });
     };
 
     return (
