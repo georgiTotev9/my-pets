@@ -7,9 +7,13 @@ const Login = ({ onLogin }) => {
     const onLoginHandler = (e) => {
         e.preventDefault();
 
-        let { email } = Object.fromEntries(new FormData(e.currentTarget));
+        let formData = new FormData(e.currentTarget);
+        let { email, password } = Object.fromEntries(formData);
 
-        authService.login(email);
+        authService.login(email, password).then((userData) => {
+            console.log('logged!');
+            console.log(userData);
+        });
 
         onLogin(email);
         navigate('/');
