@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 
-const Header = ({ email }) => {
+import { AuthContext } from '../../contexts/AuthContext';
+
+
+const Header = () => {
+    const { user } = useContext(AuthContext);
+
     const guestNav = (
         <div id='guest'>
             <Link className='button' to='/login'>
@@ -14,7 +20,7 @@ const Header = ({ email }) => {
 
     const userNav = (
         <div id='user'>
-            <span>Welcome, {email}</span>
+            <span>Welcome, {user.email}</span>
             <Link className='button' to='/my-pets'>
                 My Pets
             </Link>
@@ -32,7 +38,7 @@ const Header = ({ email }) => {
             <nav className='navbar'>
                 <section className='navbar-dashboard'>
                     <Link to='/'>Dashboard</Link>
-                    {email ? userNav : guestNav }
+                    {user.email ? userNav : guestNav }
                 </section>
             </nav>
         </header>
