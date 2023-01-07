@@ -18,6 +18,17 @@ export const logout = async () => {
     fetch(`${baseUrl}/logout`);
 };
 
+export const register = async (email, password) => {
+    let res = await fetch(`${baseUrl}/register`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+    });
+    let jsonResult = await res.json();
+
+    if (res.ok) return jsonResult;
+};
+
 export const getUser = () => localStorage.getItem('user');
 
 export const isAuthenticated = () => Boolean(getUser());

@@ -1,18 +1,24 @@
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+
+import { AuthContext } from '../../contexts/AuthContext';
 import * as petService from '../../services/petService';
 
 const Create = () => {
+    const { user }= useContext(AuthContext);
     const navigate = useNavigate();
+
     const onCreate = (e) => {
         e.preventDefault();
-        let { name, description, imageUrl, type } = Object.fromEntries(
-            new FormData(e.currentTarget)
-        );
+
+        let formData = new FormData(e.currentTarget);
+        let { name, description, imageUrl, type } = Object.fromEntries(formData);
 
         petService
-            .create({ name, description, imageUrl, type })
-            .then(() => navigate('/dashboard'));
+            .create({ name, description, imageUrl, type }, user.accessToken)
+            .then(() => navigate('/'));
     };
+
     return (
         <section id='create-page' className='create'>
             <form id='create-form' onSubmit={onCreate} method='POST'>
