@@ -10,20 +10,28 @@ import Create from './components/Create';
 import Dashboard from './components/Dashboard';
 import Details from './components/Details';
 import Logout from './components/Logout';
+import { useLocalStorage } from './hooks/useLocalStorage';
+
+const initialAuthState = {
+    _id: '',
+    email: '',
+    accessToken: '',
+    username: '',
+};
 
 function App() {
-    const [user, setUser] = useState({
-        _id: '',
-        email: '',
-        accessToken: '',
-        username: '',
-    });
+    const [user, setUser] = useLocalStorage('user', initialAuthState);
+
     const login = (authData) => {
         setUser(authData);
     };
 
+    const logout = () => {
+        setUser(initialAuthState);
+    };
+
     return (
-        <AuthContext.Provider value={{ user, login }}>
+        <AuthContext.Provider value={{ user, login, logout }}>
             <div id='container'>
                 <Header email={user.email} />
                 <main id='site-content'>

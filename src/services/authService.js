@@ -14,8 +14,10 @@ export const login = async (email, password) => {
     throw jsonResult.message;
 };
 
-export const logout = async () => {
-    fetch(`${baseUrl}/logout`);
+export const logout = async (token) => {
+    let res = await fetch(`${baseUrl}/logout`, {
+        headers: { 'X-Authorization': token },
+    });
 };
 
 export const register = async (email, password) => {
