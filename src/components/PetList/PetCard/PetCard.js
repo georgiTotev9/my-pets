@@ -6,7 +6,7 @@ const PetCard = ({pet}) => {
             <h3>Name: {pet.name}</h3>
             <p>Type: {pet.type}</p>
             <p className='img'>
-                <img src={pet.imageUrl} />
+                <img src={pet.imageUrl} alt='!No image!'/>
             </p>
             <Link className="button" to={`/details/${pet._id}`}>Details</Link>
         </li>

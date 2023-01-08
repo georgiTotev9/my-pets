@@ -10,9 +10,9 @@ const PetList = () => {
     }, []);
     return (
         <ul className='other-pets-list'>
-            {pets.map((pet) => (
+            {pets.length ? pets.map((pet) => (
                 <PetCard key={pet._id} pet={pet} />
-            ))}
+            )) : <p>No pets in database!</p>}
         </ul>
     );
 };
