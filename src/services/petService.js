@@ -9,7 +9,7 @@ export const getAll = async () => {
 };
 
 export const create = async (petData, token) => {
-    let res = await fetch(baseUrl, {
+    const res = await fetch(baseUrl, {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
@@ -17,16 +17,24 @@ export const create = async (petData, token) => {
         },
         body: JSON.stringify({ ...petData, likes: [] }),
     });
-
-    let result = await res.json();
+    const result = await res.json();
 
     return result;
 };
 
 export const getOne = async (id) => {
     const res = await fetch(`${baseUrl}/${id}`);
-
     const pet = await res.json();
 
     return pet;
+};
+
+export const remove = async (id, token) => {
+    const response = await fetch(`${baseUrl}/${id}`, {
+        method: 'DELETE',
+        headers: { 'X-Authorization': token },
+    });
+    const result = await response.json();
+    
+    return result;
 };

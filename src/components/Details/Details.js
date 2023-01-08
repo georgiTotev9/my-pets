@@ -1,9 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import * as petService from '../../services/petService';
 
 const Details = () => {
+    const navigate = useNavigate();
     const { user } = useContext(AuthContext);
     const { petId } = useParams();
     const [pet, setPet] = useState({});
@@ -12,18 +13,28 @@ const Details = () => {
         petService.getOne(petId).then((pet) => setPet(pet));
     }, [petId, setPet]);
 
+    const deleteHandler = (e) => {
+        e.preventDefault();
+
+        petService.remove(petId, user.accessToken).then(() => navigate('/'));
+    };
+
     const ownerButtons = (
         <>
             <Link className='button' to={`/edit/${pet._id}`}>
                 Edit
             </Link>
-            <a className='button' href='#'>
+            <a className='button' href='#' onClick={deleteHandler}>
                 Delete
             </a>
         </>
     );
 
-    const userButton = <a className='button' href=''>Like</a>;
+    const userButton = (
+        <a className='button' href=''>
+            Like
+        </a>
+    );
 
     return (
         <section id='details-page' className='details'>
@@ -34,7 +45,8 @@ const Details = () => {
                     <img src={pet.imageUrl} />
                 </p>
                 <div className='actions'>
-                    {user._id && (user._id == pet._ownerId ? ownerButtons : userButton)}
+                    {user._id &&
+                        (user._id == pet._ownerId ? ownerButtons : userButton)}
 
                     <div className='likes'>
                         <img className='hearts' src='/images/heart.png' />
