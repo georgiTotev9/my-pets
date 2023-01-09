@@ -1,6 +1,6 @@
 # Educational React Project
 
-started on: 02.01.2023
+Started on: 02.01.2023
 
 ## Available Scripts
 
