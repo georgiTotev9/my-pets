@@ -1,11 +1,8 @@
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-
-import { AuthContext } from '../../contexts/AuthContext';
-
+import { useAuthContext } from '../../contexts/AuthContext';
 
 const Header = () => {
-    const { isAuthenticated } = useContext(AuthContext);
+    const { isAuthenticated } = useAuthContext();
 
     const guestNav = (
         <div id='guest'>
@@ -38,7 +35,7 @@ const Header = () => {
             <nav className='navbar'>
                 <section className='navbar-dashboard'>
                     <Link to='/'>Dashboard</Link>
-                    {isAuthenticated ? userNav : guestNav }
+                    {isAuthenticated ? userNav : guestNav}
                 </section>
             </nav>
         </header>
