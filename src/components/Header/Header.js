@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 
 const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { isAuthenticated } = useContext(AuthContext);
 
     const guestNav = (
         <div id='guest'>
@@ -20,7 +20,7 @@ const Header = () => {
 
     const userNav = (
         <div id='user'>
-            <span>Welcome, {user.email}</span>
+            <span>Welcome, {isAuthenticated}</span>
             <Link className='button' to='/my-pets'>
                 My Pets
             </Link>
@@ -38,7 +38,7 @@ const Header = () => {
             <nav className='navbar'>
                 <section className='navbar-dashboard'>
                     <Link to='/'>Dashboard</Link>
-                    {user.email ? userNav : guestNav }
+                    {isAuthenticated ? userNav : guestNav }
                 </section>
             </nav>
         </header>
