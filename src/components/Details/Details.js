@@ -11,7 +11,7 @@ const Details = () => {
 
     useEffect(() => {
         petService.getOne(petId).then((pet) => setPet(pet));
-    }, [petId, setPet]);
+    }, [petId, pet]);
 
     const deleteHandler = (e) => {
         e.preventDefault();

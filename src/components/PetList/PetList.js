@@ -7,7 +7,7 @@ const PetList = () => {
 
     useEffect(() => {
         petService.getAll().then((result) => setPets(result));
-    }, []);
+    }, [pets]);
     return (
         <ul className='other-pets-list'>
             {pets.length ? pets.map((pet) => (

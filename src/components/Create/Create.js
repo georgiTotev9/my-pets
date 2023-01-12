@@ -15,7 +15,7 @@ const Create = () => {
             Object.fromEntries(formData);
 
         petService
-            .create({ name, description, imageUrl, type }, user.accessToken)
+            .create({ name, description, imageUrl, type })
             .then(() => navigate('/'));
     };
 
