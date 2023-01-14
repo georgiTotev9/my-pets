@@ -1,13 +1,15 @@
-import * as request from './requester';
-
 const baseUrl = 'http://localhost:3030/data/pets';
 
-export const getAll = () =>
-    request.get(baseUrl).then((res) => Object.values(res));
+export const getAll = async () => {
+    const res = await fetch(baseUrl);
 
-    // TODO: Fix create ASAP
-export const create = (petData) => async (petData, token) => {
-    let response = await fetch(`${baseUrl}/pets`, {
+    const pets = await res.json();
+
+    return Object.values(pets);
+};
+
+export const create = async (petData, token) => {
+    const res = await fetch(baseUrl, {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
@@ -15,13 +17,17 @@ export const create = (petData) => async (petData, token) => {
         },
         body: JSON.stringify({ ...petData, likes: [] }),
     });
-
-    let result = await response.json();
+    const result = await res.json();
 
     return result;
 };
 
-export const getOne = (id) => request.get(`${baseUrl}/${id}`);
+export const getOne = async (id) => {
+    const res = await fetch(`${baseUrl}/${id}`);
+    const pet = await res.json();
+
+    return pet;
+};
 
 export const remove = async (id, token) => {
     const response = await fetch(`${baseUrl}/${id}`, {
@@ -29,6 +35,6 @@ export const remove = async (id, token) => {
         headers: { 'X-Authorization': token },
     });
     const result = await response.json();
-
+    
     return result;
 };
