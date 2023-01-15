@@ -1,7 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 
-import { AuthContext } from './contexts/AuthContext';
 import Header from './components/Header';
 import MyPets from './components/MyPets';
 import Login from './components/Login';
@@ -10,11 +8,12 @@ import Create from './components/Create';
 import Dashboard from './components/Dashboard';
 import Details from './components/Details';
 import Logout from './components/Logout';
+import Edit from './components/Edit/Edit';
+import GuardedRoute from './components/Common/GuardedRoute';
+import PrivateRoute from './components/Common/PrivateRoute';
 import { AuthProvider } from './contexts/AuthContext';
 
-
 function App() {
-
     return (
         <AuthProvider>
             <div id='container'>
@@ -25,9 +24,13 @@ function App() {
                         <Route path='/login' element={<Login />} />
                         <Route path='/logout' element={<Logout />} />
                         <Route path='/register' element={<Register />} />
-                        <Route path='/create' element={<Create />} />
-                        <Route path='/my-pets' element={<MyPets />} />
+                        <Route path='/my-pets' element={<PrivateRoute><MyPets /></PrivateRoute>} />
                         <Route path='/details/:petId' element={<Details />} />
+
+                        <Route element={<GuardedRoute />}>
+                            <Route path='/create' element={<Create />} />
+                            <Route path='/edit/:petId' element={<Edit />} />
+                        </Route>
                     </Routes>
                 </main>
             </div>
