@@ -1,4 +1,4 @@
-export const requester = async (method, url, data) => {
+export const request = async (method, url, data) => {
     let token = getToken();
     let options = {};
 
@@ -38,3 +38,8 @@ export const getToken = () => {
         console.error(err);
     }
 };
+
+export const get = request.bind({}, 'GET');
+export const post = request.bind({}, 'POST');
+export const put = request.bind({}, 'PUT');
+export const del = request.bind({}, 'DELETE');

@@ -1,11 +1,14 @@
+import * as request from './requester';
+
 const baseUrl = 'http://localhost:3030/data/pets';
 
-export const getAll = async () => {
-    const res = await fetch(baseUrl);
+export const getAll = async () => request.get(baseUrl);
 
-    const pets = await res.json();
+export const getMyPets = (ownerId) => {
+    // server side searching/filtering
+    let query = encodeURIComponent(`_ownerId="${ownerId}"`);
 
-    return Object.values(pets);
+    return request.get(`${baseUrl}/pets?where=${query}`);
 };
 
 export const create = async (petData, token) => {
@@ -35,6 +38,6 @@ export const remove = async (id, token) => {
         headers: { 'X-Authorization': token },
     });
     const result = await response.json();
-    
+
     return result;
 };
