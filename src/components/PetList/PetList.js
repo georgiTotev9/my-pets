@@ -1,6 +1,4 @@
 import PetCard from './PetCard';
-import { useEffect, useState } from 'react';
-import * as petService from '../../services/petService';
 
 const PetList = ({ pets }) => {
     return (

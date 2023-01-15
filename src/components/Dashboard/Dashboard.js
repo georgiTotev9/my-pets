@@ -1,4 +1,3 @@
-import { Routes, Route, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import * as petService from '../../services/petService';
 import PetList from '../PetList';
