@@ -1,5 +1,4 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import * as petService from '../../services/petService';
 import usePetState from '../../hooks/usePetState';
 
