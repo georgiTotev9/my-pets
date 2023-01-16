@@ -41,3 +41,5 @@ export const remove = async (id, token) => {
 
     return result;
 };
+
+export const update = (petId, petData) => request.put(`${baseUrl}/${petId}`, petData);

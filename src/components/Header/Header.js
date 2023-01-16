@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
 
 const Header = () => {
-    const { isAuthenticated } = useAuthContext();
+    const { user, isAuthenticated } = useAuthContext();
 
     const guestNav = (
         <div id='guest'>
@@ -17,7 +17,7 @@ const Header = () => {
 
     const userNav = (
         <div id='user'>
-            <span>Welcome, {isAuthenticated}</span>
+            <span>Welcome, {user.email}</span>
             <Link className='button' to='/my-pets'>
                 My Pets
             </Link>
