@@ -1,18 +1,15 @@
-import { useState, useEffect} from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
 import * as petService from '../../services/petService';
+import usePetState from '../../hooks/usePetState';
 
 const Details = () => {
     const navigate = useNavigate();
     const { user } = useAuthContext();
     const { petId } = useParams();
-    const [pet, setPet] = useState({});
+    const [pet, setPet] = usePetState(petId);
 
-    useEffect(() => {
-        petService.getOne(petId).then((pet) => setPet(pet));
-    }, [petId, setPet]);
-
+ 
     const deleteHandler = (e) => {
         e.preventDefault();
 
